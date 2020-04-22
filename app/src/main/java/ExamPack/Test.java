@@ -1,14 +1,22 @@
 package ExamPack;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 class Answer {
-    boolean is_correct;
-    String ans_body;
+   private boolean is_correct;
+   private String ans_body;
     Answer(String body,boolean correct) {
      this.ans_body = body;
      this.is_correct = correct;
+    }
+    public Answer(JSONObject data) throws JSONException {
+        this.ans_body = data.getString("answer");
+        this.is_correct = data.getBoolean("is_correct");
     }
 
     public String getAnsBody() {
@@ -21,13 +29,22 @@ class Answer {
 }
 
 class Question {
-    List<Answer> answers;
-    Answer right_answer;
-    String body;
+    private List<Answer> answers;
+    private Answer right_answer;
+    private String body;
 
-    Question() {
+   public Question(JSONObject data) throws JSONException {
+        answers = new ArrayList<>();
+        this.body = data.getString("question");
+        JSONArray answersArray = data.getJSONArray("answers");
+        for(int k=0;k < answersArray.length(); k++) {
+            JSONObject answer = answersArray.getJSONObject(k);
+            Answer tmp_ans= new Answer(answer);
+            answers.add(tmp_ans);
 
+        }
     }
+
     public String getBody() {
         return body;
     }
@@ -39,15 +56,29 @@ class Question {
 
 public class Test {
 
-
    private String test_name;
    private String description;
-   List<Question> questions;
+   private List<Question> questions;
 
+   public Test(JSONObject data) throws JSONException {
+       questions = new ArrayList<>();
+       String tring = data.getString("name");
+       JSONArray questionsArray = data.getJSONArray("questions");
+       for (int i = 0; i < questionsArray.length(); i++) {
+           //JSONArray consist of JSONObjects;
+           /*One iteration is one question*/
+           JSONObject question = questionsArray.getJSONObject(i);
+           Question tmp_quest= new Question(question);
+           questions.add(tmp_quest);
 
-   Test(String Json_str) {
-
+       }
    }
+   public String getDescription() {
+       return description;
+   }
+   public String getTestName() {
+        return test_name;
+    }
 
 
 }
