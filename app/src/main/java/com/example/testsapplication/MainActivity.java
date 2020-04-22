@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             Test tst =new  Test(jObject);
             vieeew.setText("SEE the might ?");
         } catch (JSONException e) {
-            vieeew.setText("ASS we can");
             e.printStackTrace();
         }
 
