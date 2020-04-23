@@ -6,12 +6,13 @@ import java.util.List;
 
 
 
-
+@Deprecated
 public class Exam {
         //exam should contain couple Tests
-        List<Test>tests;
+        private List<Test>tests;
+        private String topic;
         Exam() {
-
+                //we should get list of jsons
         }
 }
 
