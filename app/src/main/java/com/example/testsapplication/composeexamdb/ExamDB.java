@@ -5,29 +5,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.testsapplication.R;
 import com.example.testsapplication.modelspack.Answer;
 import com.example.testsapplication.modelspack.Question;
 import com.example.testsapplication.modelspack.Test;
 
+
 // detect Json files by path and stringify them
-public class ExamDB {
-    JSONObject object;
-    private List<String> result; // should contain "cached" stringifiyerd Test`s Json`s
+public class ExamDB implements JsonBasedExamDB {
 
-    public List<String> getDB() {
-        return result;
+    private List<Test> tests;
+    public ExamDB(ContextToJson json_data) throws JSONException {
+        tests=new ArrayList<>();
+        List<JSONObject> db = json_data.getJsonDB();
+        for(int i=0;i<db.size();i++) {
+            this.tests.add(this.getTest(db.get(i)));
+        }
     }
-    public ExamDB() {
-
+    @Override
+    public List<Test> GetAllTests() {
+        return tests;
     }
 
 
-    public Test getTest(JSONObject data) throws JSONException {
+    private Test getTest(JSONObject data) throws JSONException {
         return new Test(this.getQuestionList(data),data.getString("name"),data.getString("description"));
     }
+
     private List<Question> getQuestionList(JSONObject data) throws JSONException {
         List<Question> tmp_list = new ArrayList<>();
         JSONArray questionsArray = data.getJSONArray("questions");
