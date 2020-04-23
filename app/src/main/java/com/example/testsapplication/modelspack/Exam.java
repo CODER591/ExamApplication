@@ -1,7 +1,5 @@
-package ExamPack;
+package com.example.testsapplication.modelspack;
 
-import ComposeExamDB.*;
-import java.util.ArrayList;
 import java.util.List;
 
 

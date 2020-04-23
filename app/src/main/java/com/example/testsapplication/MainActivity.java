@@ -2,19 +2,12 @@ package com.example.testsapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.*;
 import org.json.*;
 
-import ComposeExamDB.ExamDB;
-import ExamPack.Test;
+import com.example.testsapplication.composeexamdb.ExamDB;
 
 public class MainActivity extends AppCompatActivity {
 

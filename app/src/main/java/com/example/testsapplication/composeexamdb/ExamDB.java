@@ -1,18 +1,16 @@
-package ComposeExamDB;
+package com.example.testsapplication.composeexamdb;
 
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import ExamPack.Answer;
-import ExamPack.Exam;
-import ExamPack.Question;
-import ExamPack.Test;
+import com.example.testsapplication.modelspack.Answer;
+import com.example.testsapplication.modelspack.Question;
+import com.example.testsapplication.modelspack.Test;
 
 // detect Json files by path and stringify them
 public class ExamDB {

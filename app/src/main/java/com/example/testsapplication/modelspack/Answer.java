@@ -1,7 +1,4 @@
-package ExamPack;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+package com.example.testsapplication.modelspack;
 
 public class Answer {
     private boolean is_correct;
