@@ -23,9 +23,10 @@ public class ExamDB implements JsonBasedExamDB {
     private List<Test> tests;
     public ExamDB(ContextToJson json_data) throws JSONException {
         tests=new ArrayList<>();
-        List<JSONObject> db = json_data.getJsonDB();
-        for(int i=0;i<db.size();i++) {
-            this.tests.add(this.getTest(db.get(i)));
+        JSONObject base_json = json_data.getJsonDB();
+        JSONArray Tests_json_arr = base_json.getJSONArray("test_arr");
+        for(int i=0;i<Tests_json_arr.length();i++) {
+            this.tests.add(this.getTest(Tests_json_arr.getJSONObject(i)));
         }
     }
     @Override

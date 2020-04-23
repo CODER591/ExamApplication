@@ -14,23 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContextToJson {
-    List<Integer> json_ids;
-    List<JSONObject> json_db;
+
+    JSONObject json_db;
     public ContextToJson(Context context) throws JSONException {
-        json_db = new ArrayList<>();
-        json_ids = new ArrayList<>();
 
-        json_ids.add(R.raw.first_test); // have new json, insert here // maybe should be changed on AssetsManager
-        json_ids.add(R.raw.second_test);
-
-        for(int i=0;i < json_ids.size();i++){
-            InputStream stream = context.getResources().openRawResource(json_ids.get(i));
-            json_db.add(new JSONObject(id_toString(stream)));
-        }
-
+            InputStream stream = context.getResources().openRawResource(R.raw.first_test);
+            json_db= new JSONObject(id_toString(stream));
     }
 
-    public List<JSONObject> getJsonDB() {
+    public JSONObject getJsonDB() {
         return json_db;
     }
 
