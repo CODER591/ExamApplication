@@ -9,6 +9,10 @@ public class Test {
    private String description;
    private List<Question> questions;
 
+   public Test(){
+
+   }
+
    public Test(List<Question>list,String name,String description) {
         this.questions = list;
         this.test_name = name;
@@ -27,6 +31,9 @@ public class Test {
        return questions.size();
    }
 
+   public List<Question> getQuestions() {
+       return questions;
+   }
    //public int getRightAnsweredCount();
 
 }
