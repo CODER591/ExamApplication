@@ -1,21 +1,26 @@
 package com.example.testsapplication.testmanager;
 
-
-//singleton
-
-// should manage running test
-
 import com.example.testsapplication.modelspack.Question;
 import com.example.testsapplication.modelspack.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+//singleton
+
+// should manage running test
+//Questions should display in random order, answers should display in as they are in db
+
+
 public class TestManager {
     private static final TestManager INSTANCE = new TestManager();
     private static List<Test> imported_db;  // all parsed json is here
     private static Test  owned_test; //test that we are passing
-    private
+    private static int position;
+    //Should this class have inside some  timer?
+    //this manager should own answered questions.
+    //this manager should own skipped questions.
     TestManager() {
 
     }
@@ -44,6 +49,27 @@ public class TestManager {
             quiz_list.add(imported_qs.get(random));
         }
         owned_test = new Test(quiz_list,owned_test.getTestName(),owned_test.getDescription());
+        position=0;
+    }
 
+    public static void endTest(){
+        //get some results
+        //maybe stop the timer?
+
+    }
+    //answer index is number of answer on plate (number of checkbox)
+    public static void answerQuestion(int answer_index) {
+        if(position>owned_test.getQuestionsCount()) { return; }
+
+        owned_test.getQuestions().get(position).setAnswerIndex(answer_index);
+        position++;//lets move to next question
+
+    }
+    //here we should know what question we are now dealing
+    public static int getPosition(){
+            return position;
+    }
+    public  static void skipQuestion() {
+        position++;
     }
 }
