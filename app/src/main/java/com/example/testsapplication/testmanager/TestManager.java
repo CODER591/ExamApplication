@@ -69,6 +69,9 @@ public class TestManager {
     public static int getPosition(){
             return position;
     }
+    public static Question getCurrentQuestion(){
+        return owned_test.getQuestions().get(position);
+    }
     public  static void skipQuestion() {
         position++;
     }
