@@ -1,18 +1,18 @@
 package com.example.testsapplication.modelspack;
 
 public class Answer {
-    private boolean is_correct;
-    private String ans_body;
+    private boolean mIsCorrect;
+    private String mAnsBody;
     public Answer(String body,boolean correct) {
-        this.ans_body = body;
-        this.is_correct = correct;
+        mAnsBody = body;
+        mIsCorrect = correct;
     }
 
     public String getAnsBody() {
-        return ans_body;
+        return mAnsBody;
     }
 
     public boolean is_Correct() {
-        return is_correct;
+        return mIsCorrect;
     }
 }

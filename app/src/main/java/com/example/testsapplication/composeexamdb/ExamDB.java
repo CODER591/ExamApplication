@@ -20,18 +20,18 @@ import com.example.testsapplication.modelspack.Test;
 // detect Json files by path and stringify them
 public class ExamDB implements JsonBasedExamDB {
 
-    private List<Test> tests;
+    private List<Test> mTests;
     public ExamDB(ContextToJson json_data) throws JSONException {
-        tests=new ArrayList<>();
+        mTests = new ArrayList<>();
         JSONObject base_json = json_data.getJsonDB();
         JSONArray Tests_json_arr = base_json.getJSONArray("test_arr");
         for(int i=0;i<Tests_json_arr.length();i++) {
-            this.tests.add(this.getTest(Tests_json_arr.getJSONObject(i)));
+            this.mTests.add(this.getTest(Tests_json_arr.getJSONObject(i)));
         }
     }
     @Override
     public List<Test> GetAllTests() {
-        return tests;
+        return mTests;
     }
 
 
@@ -43,12 +43,9 @@ public class ExamDB implements JsonBasedExamDB {
         List<Question> tmp_list = new ArrayList<>();
         JSONArray questionsArray = data.getJSONArray("questions");
         for (int i = 0; i < questionsArray.length(); i++) {
-            //JSONArray consist of JSONObjects;
-            /*One iteration is one question*/
             JSONObject question = questionsArray.getJSONObject(i);
             Question tmp_quest = getQuestion(question);
             tmp_list.add(tmp_quest);
-
         }
         return tmp_list;
     }
@@ -63,19 +60,17 @@ public class ExamDB implements JsonBasedExamDB {
             JSONObject answer = answersArray.getJSONObject(k);
             Answer tmp_ans= this.getAnswer(answer);
             tmp_list.add(tmp_ans);
-
         }
         return tmp_list;
     }
     private Answer getAnswer(JSONObject data) throws JSONException {
         return new Answer(data.getString("answer"),data.getBoolean("is_correct"));
-
     }
 
     public List<String> GetAllTestsNames() {
         List<String>str=new ArrayList<>();
-        for(int i=0;i<tests.size();i++) {
-            str.add(tests.get(i).getTestName());
+        for(int i=0;i<mTests.size();i++) {
+            str.add(mTests.get(i).getTestName());
         }
         return str;
     }

@@ -30,16 +30,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    private RecyclerView TestsListView;
-    private ShowTestAdapter testAdapter;
+    private RecyclerView mTestsListView;
+    private ShowTestAdapter mTestAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        // this button should be substituted on the recycler view element
-      //  main_button = findViewById(R.id.main_button);
         ContextToJson maindb;
         ExamDB exam;
         try {
@@ -47,31 +44,16 @@ public class MainActivity extends AppCompatActivity {
             exam = new ExamDB(maindb);
             TestManager.getInstance().setImportedDb(exam.GetAllTests());
 
-            TestsListView = findViewById(R.id.rv_layout);
+            mTestsListView = findViewById(R.id.rv_layout);
             LinearLayoutManager manager =new LinearLayoutManager(this);
-            TestsListView.setLayoutManager(manager);
-            TestsListView.setHasFixedSize(true);
+            mTestsListView.setLayoutManager(manager);
+            mTestsListView.setHasFixedSize(true);
 
-            testAdapter = new ShowTestAdapter(exam.GetAllTestsNames());
-            TestsListView.setAdapter(testAdapter);
+            mTestAdapter = new ShowTestAdapter(exam.GetAllTestsNames());
+            mTestsListView.setAdapter(mTestAdapter);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-    /*    main_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                TestManager.getInstance().startTest(0);
-            }
-        });*/
-        /*TestsListView =findViewById(R.id.rv_layout);
-        LinearLayoutManager manager =new LinearLayoutManager(this);
-        TestsListView.setLayoutManager(manager);
-        TestsListView.setHasFixedSize(true);
-
-        testAdapter =new ShowTestAdapter(5);
-        TestsListView.setAdapter(testAdapter);*/
     }
 }
