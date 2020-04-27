@@ -46,10 +46,13 @@ public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestV
         TextView viewHolderIndex;
         public TestViewHolder(View itemView) {
             super(itemView);
+
             viewHolderIndex = itemView.findViewById(R.id.tv_view_holder_number);
             viewHolderIndex.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    TestManager.getInstance().setOwnedTest(getAdapterPosition());
                     Intent activity = new Intent(v.getContext(), TestStartActivity.class);
                     activity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     v.getContext().startActivity(activity);

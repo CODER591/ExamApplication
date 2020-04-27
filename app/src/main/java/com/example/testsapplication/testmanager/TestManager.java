@@ -27,7 +27,15 @@ public class TestManager {
     public static TestManager getInstance() {
         return INSTANCE;
     }
-    public static Test getOwnedTest(Test test) {
+    public  void setOwnedTest(Test test) {
+        sOwnedTest=test;
+    }
+    public  void setOwnedTest(int test_position) {
+        if(test_position>0 && test_position<sImportedDb.size()) {
+            sOwnedTest = sImportedDb.get(test_position);
+        }
+    }
+    public  Test getOwnedTest() {
            return sOwnedTest;
     }
     public static void setImportedDb(List<Test>list) {
