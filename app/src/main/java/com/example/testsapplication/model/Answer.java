@@ -1,4 +1,4 @@
-package com.example.testsapplication.modelspack;
+package com.example.testsapplication.model;
 
 public class Answer {
     private boolean mIsCorrect;
@@ -7,11 +7,9 @@ public class Answer {
         mAnsBody = body;
         mIsCorrect = correct;
     }
-
     public String getAnsBody() {
         return mAnsBody;
     }
-
     public boolean is_Correct() {
         return mIsCorrect;
     }

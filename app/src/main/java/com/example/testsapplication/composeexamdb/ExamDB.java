@@ -5,21 +5,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.testsapplication.R;
-import com.example.testsapplication.modelspack.Answer;
-import com.example.testsapplication.modelspack.Question;
-import com.example.testsapplication.modelspack.Test;
+import com.example.testsapplication.model.Answer;
+import com.example.testsapplication.model.Question;
+import com.example.testsapplication.model.Test;
 
 
 // detect Json files by path and stringify them
 public class ExamDB implements JsonBasedExamDB {
-
     private List<Test> mTests;
     public ExamDB(ContextToJson json_data) throws JSONException {
         mTests = new ArrayList<>();

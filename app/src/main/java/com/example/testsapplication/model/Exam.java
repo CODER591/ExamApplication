@@ -1,4 +1,4 @@
-package com.example.testsapplication.modelspack;
+package com.example.testsapplication.model;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class Exam {
         private List<Test>tests;
         private String topic;
         Exam() {
-               
+
         }
 }
 

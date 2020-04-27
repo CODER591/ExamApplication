@@ -1,4 +1,4 @@
-package com.example.testsapplication.modelspack;
+package com.example.testsapplication.model;
 
 import java.util.List;
 
@@ -7,30 +7,26 @@ public class Test {
 
    private String mTestName;
    private String mDescription; 
-   private List<Question> questions;
+   private List<Question> mQuestions;
 
    public Test(){
 
    }
    public Test(List<Question>list,String name,String description) {
-        this.questions = list;
-        this.mTestName = name;
-        this.mDescription = description;
+        mQuestions = list;
+        mTestName = name;
+        mDescription = description;
    }
-
    public String getDescription() {
        return mDescription;
    }
-
    public String getTestName() {
         return mTestName;
    }
-
    public int getQuestionsCount() {
-       return questions.size();
+       return mQuestions.size();
    }
-
    public List<Question> getQuestions() {
-       return questions;
+       return mQuestions;
    }
 }

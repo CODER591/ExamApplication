@@ -1,7 +1,7 @@
 package com.example.testsapplication.testmanager;
 
-import com.example.testsapplication.modelspack.Question;
-import com.example.testsapplication.modelspack.Test;
+import com.example.testsapplication.model.Question;
+import com.example.testsapplication.model.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,13 +55,15 @@ public class TestManager {
     public static void endTest(){
         //get some results
         //maybe stop the timer?
+        //??
 
     }
     //answer index is number of answer on plate (number of checkbox)
     public static void answerQuestion(int answer_index) {
         if(sPosition>sOwnedTest.getQuestionsCount()) { return; }
 
-        sOwnedTest.getQuestions().get(sPosition).setAnswerIndex(answer_index);
+        //????
+
         sPosition++;//lets move to next question
 
     }
