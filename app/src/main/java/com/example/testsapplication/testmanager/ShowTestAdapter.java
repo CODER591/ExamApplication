@@ -1,5 +1,6 @@
 package com.example.testsapplication.testmanager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testsapplication.R;
+import com.example.testsapplication.StartPageFragment;
 import com.example.testsapplication.modelspack.Test;
 
 import java.util.List;
@@ -58,13 +63,15 @@ public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestV
                         //move to fragment with all shiit
                     int positionIndex = getAdapterPosition(); //get element what we are just clicked
                     viewHolderIndex.setText("I was chosen!");
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    Fragment newFragment = new StartPageFragment();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.the_main_activity, newFragment).addToBackStack(null).commit();
 
                 }
               }
             );
         }
         void bind(int listIndex) {
-            //listItemTestView.setText(test_names.get(listIndex));
             viewHolderIndex.setText(test_names.get(listIndex));
         }
     }
