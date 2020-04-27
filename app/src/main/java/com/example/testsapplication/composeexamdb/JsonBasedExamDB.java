@@ -25,7 +25,7 @@ public class JsonBasedExamDB implements ExamDB {
         }
     }
     @Override
-    public List<Test> GetAllTests() {
+    public List<Test> getAllTests() {
         return mTests;
     }
 
@@ -60,14 +60,6 @@ public class JsonBasedExamDB implements ExamDB {
     }
     private Answer getAnswer(JSONObject data) throws JSONException {
         return new Answer(data.getString("answer"),data.getBoolean("is_correct"));
-    }
-
-    public List<String> GetAllTestsNames() {
-        List<String>str=new ArrayList<>();
-        for(int i=0;i<mTests.size();i++) {
-            str.add(mTests.get(i).getTestName());
-        }
-        return str;
     }
 
 }

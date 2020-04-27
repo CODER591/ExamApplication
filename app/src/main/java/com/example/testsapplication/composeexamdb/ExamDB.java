@@ -5,6 +5,5 @@ import com.example.testsapplication.model.Test;
 import java.util.List;
 
 public interface ExamDB {
-    List<Test> GetAllTests();
-    List<String> GetAllTestsNames();
+    List<Test> getAllTests();
 }

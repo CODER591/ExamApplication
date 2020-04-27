@@ -11,15 +11,14 @@ import org.json.*;
 import com.example.testsapplication.composeexamdb.ExamDB;
 import com.example.testsapplication.composeexamdb.JsonFromContext;
 import com.example.testsapplication.composeexamdb.JsonBasedExamDB;
-import com.example.testsapplication.testmanager.ShowTestAdapter;
-import com.example.testsapplication.testmanager.TestManager;
+import com.example.testsapplication.testmanager.TestAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
     private RecyclerView mTestsListView;
-    private ShowTestAdapter mTestAdapter;
+    private TestAdapter mTestAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +29,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             maindb = new JsonFromContext(this);
             exam = new JsonBasedExamDB(maindb);
-            Application app = new Application(exam);
+            TestApplication app = new TestApplication(exam);
 
             mTestsListView = findViewById(R.id.rv_layout);
             LinearLayoutManager manager = new LinearLayoutManager(this);
             mTestsListView.setLayoutManager(manager);
             mTestsListView.setHasFixedSize(true);
-
-            mTestAdapter = new ShowTestAdapter(exam.GetAllTestsNames());
+            mTestAdapter = new TestAdapter(exam.getAllTests());
             mTestsListView.setAdapter(mTestAdapter);
 
         } catch (JSONException e) {

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.testsapplication.testmanager.TestManager;
 
-public class TestStartActivity extends AppCompatActivity {
+public class ExamActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
