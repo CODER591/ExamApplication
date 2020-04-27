@@ -13,10 +13,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContextToJson {
+public class JsonFromContext {
 
     JSONObject json_db;
-    public ContextToJson(Context context) throws JSONException {
+    public JsonFromContext(Context context) throws JSONException {
 
             InputStream stream = context.getResources().openRawResource(R.raw.first_test);
             json_db= new JSONObject(id_toString(stream));
