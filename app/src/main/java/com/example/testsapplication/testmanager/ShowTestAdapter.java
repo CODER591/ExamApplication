@@ -33,14 +33,14 @@ public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestV
         LayoutInflater inflater = LayoutInflater.from(context);
         View view =inflater.inflate(layoutId,parent,false);
         TestViewHolder viewHolder = new TestViewHolder(view);
-        viewHolder.viewHolderIndex.setText("Holder count"+String.valueOf(viewHolderCount)+"  "+test_names.get(viewHolderCount)); //would be there any crashes???
+       // viewHolder.viewHolderIndex.setText("Holder count"+String.valueOf(viewHolderCount)+"  "+test_names.get(viewHolderCount));
         viewHolderCount++;
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
-       //     holder.bind(position);
+           holder.bind(position);
     }
 
     @Override
@@ -51,14 +51,15 @@ public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestV
     class TestViewHolder extends RecyclerView.ViewHolder {
 
         TextView viewHolderIndex;
-
+        TextView listItemTestView;
         public TestViewHolder(View itemView) {
             super(itemView);
             viewHolderIndex = itemView.findViewById(R.id.tv_view_holder_number);
-
+            listItemTestView = itemView.findViewById(R.id.tv_number_item);
         }
         void bind(int listIndex) {
-         //   listItemNumberView.setText(String.valueOf(listIndex));
+            //listItemTestView.setText(test_names.get(listIndex));
+            viewHolderIndex.setText(test_names.get(listIndex));
         }
     }
 
