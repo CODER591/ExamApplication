@@ -72,4 +72,12 @@ public class ExamDB implements JsonBasedExamDB {
 
     }
 
+    public List<String> GetAllTestsNames() {
+        List<String>str=new ArrayList<>();
+        for(int i=0;i<tests.size();i++) {
+            str.add(tests.get(i).getTestName());
+        }
+        return str;
+    }
+
 }

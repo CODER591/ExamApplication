@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             TestsListView.setLayoutManager(manager);
             TestsListView.setHasFixedSize(true);
 
-            testAdapter =new ShowTestAdapter(exam.GetAllTests().size());
+            testAdapter = new ShowTestAdapter(exam.GetAllTestsNames());
             TestsListView.setAdapter(testAdapter);
 
         } catch (JSONException e) {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         TestsListView.setLayoutManager(manager);
         TestsListView.setHasFixedSize(true);
 
-        testAdapter =new ShowTestAdapter(exam.GetAllTests().size());
+        testAdapter =new ShowTestAdapter(5);
         TestsListView.setAdapter(testAdapter);*/
     }
 }

@@ -10,13 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testsapplication.R;
+import com.example.testsapplication.modelspack.Test;
+
+import java.util.List;
 
 public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestViewHolder>{
     private static int viewHolderCount;
+    private static List<String> test_names;
     private int numberItems;
-    public ShowTestAdapter(int numberOfIntems) {
+    //refactor this constructor
+    public ShowTestAdapter(List<String> testnames) {
         viewHolderCount=0;
-        numberItems = numberOfIntems;
+        test_names =testnames;
+        numberItems = testnames.size();
     }
     @NonNull
     @Override
@@ -27,14 +33,14 @@ public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestV
         LayoutInflater inflater = LayoutInflater.from(context);
         View view =inflater.inflate(layoutId,parent,false);
         TestViewHolder viewHolder = new TestViewHolder(view);
-        viewHolder.viewHolderIndex.setText("view holder index:"+viewHolderCount);
+        viewHolder.viewHolderIndex.setText("Holder count"+String.valueOf(viewHolderCount)+"  "+test_names.get(viewHolderCount)); //would be there any crashes???
         viewHolderCount++;
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
-            holder.bind(position);
+       //     holder.bind(position);
     }
 
     @Override
@@ -44,18 +50,15 @@ public class ShowTestAdapter  extends RecyclerView.Adapter<ShowTestAdapter.TestV
 
     class TestViewHolder extends RecyclerView.ViewHolder {
 
-        TextView listItemNumberView;
         TextView viewHolderIndex;
 
         public TestViewHolder(View itemView) {
             super(itemView);
-
-            listItemNumberView = itemView.findViewById(R.id.tv_number_item);
             viewHolderIndex = itemView.findViewById(R.id.tv_view_holder_number);
 
         }
         void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
+         //   listItemNumberView.setText(String.valueOf(listIndex));
         }
     }
 
