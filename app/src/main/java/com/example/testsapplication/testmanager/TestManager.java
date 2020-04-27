@@ -27,15 +27,13 @@ public class TestManager {
     public static TestManager getInstance() {
         return INSTANCE;
     }
-
-    //Lets  rebuild our test by selecting random questions and setting new object to us;
     public static Test getOwnedTest(Test test) {
            return sOwnedTest;
     }
     public static void setImportedDb(List<Test>list) {
         sImportedDb = list;
     }
-
+    //Lets  rebuild our test by selecting random questions and setting new object to us;
     public static void startTest(int test_id) {
         if(test_id > sImportedDb.size() || test_id <0) {
             return;
@@ -51,21 +49,18 @@ public class TestManager {
         sOwnedTest = new Test(quiz_list,sOwnedTest.getTestName(),sOwnedTest.getDescription());
         sPosition=0;
     }
-
     public static void endTest(){
         //get some results
         //maybe stop the timer?
         //??
-
     }
     //answer index is number of answer on plate (number of checkbox)
     public static void answerQuestion(int answer_index) {
         if(sPosition>sOwnedTest.getQuestionsCount()) { return; }
 
+
         //????
-
         sPosition++;//lets move to next question
-
     }
     //here we should know what question we are now dealing
     public static int getPosition(){

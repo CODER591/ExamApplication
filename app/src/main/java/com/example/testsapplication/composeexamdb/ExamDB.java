@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ExamDB {
     List<Test> GetAllTests();
+    List<String> GetAllTestsNames();
 }

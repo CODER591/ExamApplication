@@ -32,15 +32,12 @@ public class MainActivity extends AppCompatActivity {
             exam = new JsonBasedExamDB(maindb);
             Application app = new Application(exam);
 
-
-            TestManager.getInstance().setImportedDb(exam.GetAllTests());
-
             mTestsListView = findViewById(R.id.rv_layout);
-            LinearLayoutManager manager =new LinearLayoutManager(this);
+            LinearLayoutManager manager = new LinearLayoutManager(this);
             mTestsListView.setLayoutManager(manager);
             mTestsListView.setHasFixedSize(true);
 
-            mTestAdapter = new ShowTestAdapter(((JsonBasedExamDB) exam).GetAllTestsNames());
+            mTestAdapter = new ShowTestAdapter(exam.GetAllTestsNames());
             mTestsListView.setAdapter(mTestAdapter);
 
         } catch (JSONException e) {
