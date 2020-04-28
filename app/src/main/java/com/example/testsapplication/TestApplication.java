@@ -15,7 +15,6 @@ public class TestApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         JSONProvider loaded_json_resource;
         ExamDB loaded_main_tests_db;
         try {
