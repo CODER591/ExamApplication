@@ -6,8 +6,13 @@ import com.example.testsapplication.testmanager.TestManager;
 
 public class TestApplication extends android.app.Application {
     //TestManagerInitialise
-    TestApplication(ExamDB database) {
+    public TestApplication(){}
+    public TestApplication(ExamDB database) {
         TestManager.getInstance().setImportedDb(database.getAllTests());
     }
-
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // Required initialization logic here!
+    }
 }

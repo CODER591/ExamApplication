@@ -27,15 +27,15 @@ public class TestManager {
     public static TestManager getInstance() {
         return INSTANCE;
     }
-    public  void setOwnedTest(Test test) {
-        sOwnedTest=test;
+    public static void setOwnedTest(Test test) {
+        sOwnedTest = test;
     }
-    public  void setOwnedTest(int test_position) {
-        if(test_position>0 && test_position<sImportedDb.size()) {
+    public static void setOwnedTest(int test_position) {
+        if(test_position > 0 && test_position < sImportedDb.size()) {
             sOwnedTest = sImportedDb.get(test_position);
         }
     }
-    public  Test getOwnedTest() {
+    public static Test getOwnedTest() {
            return sOwnedTest;
     }
     public static void setImportedDb(List<Test>list) {
@@ -49,7 +49,7 @@ public class TestManager {
         sOwnedTest = sImportedDb.get(test_id);
         List<Question> imported_qs= sOwnedTest.getQuestions();
         List<Question> quiz_list=new ArrayList<>();
-        for(int i=0;i<10;i++) {
+        for(int i = 0; i < 10; i++) {
             //HERE IS BUG we can push in list some duplicated questions
             int random =(int) Math.random() * imported_qs.size();
             quiz_list.add(imported_qs.get(random));
@@ -66,8 +66,8 @@ public class TestManager {
     public static void answerQuestion(int answer_index) {
         if(sPosition>sOwnedTest.getQuestionsCount()) { return; }
 
-
         //????
+
         sPosition++;//lets move to next question
     }
     //here we should know what question we are now dealing
@@ -77,7 +77,7 @@ public class TestManager {
     public static Question getCurrentQuestion(){
         return sOwnedTest.getQuestions().get(sPosition);
     }
-    public  static void skipQuestion() {
+    public static void skipQuestion() {
         sPosition++;
     }
 }

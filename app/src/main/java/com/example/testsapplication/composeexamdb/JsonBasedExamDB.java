@@ -16,10 +16,9 @@ import com.example.testsapplication.model.Test;
 // detect Json files by path and stringify them
 public class JsonBasedExamDB implements ExamDB {
     private List<Test> mTests;
-    public JsonBasedExamDB(JsonFromContext json_data) throws JSONException {
+    public JsonBasedExamDB(JSONObject json_data) throws JSONException {
         mTests = new ArrayList<>();
-        JSONObject base_json = json_data.getJsonDB();
-        JSONArray Tests_json_arr = base_json.getJSONArray("test_arr");
+        JSONArray Tests_json_arr = json_data.getJSONArray("test_arr");
         for(int i=0;i<Tests_json_arr.length();i++) {
             this.mTests.add(this.getTest(Tests_json_arr.getJSONObject(i)));
         }

@@ -65,7 +65,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
               }
             );
         }
-        void bind(int listIndex) {
+        public void bind(int listIndex) {
             viewHolderIndex.setText(sTestNames.get(listIndex));
         }
     }

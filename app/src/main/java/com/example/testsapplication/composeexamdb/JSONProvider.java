@@ -2,31 +2,28 @@ package com.example.testsapplication.composeexamdb;
 
 import android.content.Context;
 
-import com.example.testsapplication.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-public class JsonFromContext {
+public class JSONProvider {
 
-    JSONObject json_db;
-    public JsonFromContext(Context context) throws JSONException {
+    private JSONObject mJsonObject;
+    public JSONProvider() {
 
-            InputStream stream = context.getResources().openRawResource(R.raw.first_test);
-            json_db= new JSONObject(id_toString(stream));
     }
-
     public JSONObject getJsonDB() {
-        return json_db;
+        return mJsonObject;
     }
-
-    private String id_toString(InputStream inputStream) {
+    public JSONObject loadJSONFromResourceFile(Context context, int resource_id) throws JSONException {
+        InputStream stream = context.getResources().openRawResource(resource_id);
+        mJsonObject = new JSONObject(inputStreamToString(stream));
+        return mJsonObject;
+    }
+    private String inputStreamToString(InputStream inputStream) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
             int ctr = inputStream.read();
