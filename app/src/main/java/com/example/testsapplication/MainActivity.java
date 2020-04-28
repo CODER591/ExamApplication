@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
             // TestApplication app = new TestApplication(exam);
            // TestManager.getInstance().setImportedDb(database.getAllTests());
-
             TestManager.getInstance().setImportedDb(exam.getAllTests());
+
             mTestsListView = findViewById(R.id.rv_layout);
             LinearLayoutManager manager = new LinearLayoutManager(this);
             mTestsListView.setLayoutManager(manager);

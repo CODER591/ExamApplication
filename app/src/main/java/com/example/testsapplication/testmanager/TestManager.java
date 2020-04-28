@@ -15,9 +15,9 @@ import java.util.List;
 
 public class TestManager {
     private static final TestManager INSTANCE = new TestManager();
-    private static List<Test> sImportedDb;   // all parsed json is here
-    private static Test  sOwnedTest; //test that we are passing
-    private static int sPosition;
+    private List<Test> sImportedDb;   // all parsed json is here
+    private Test  sOwnedTest; //test that we are passing
+    private int sPosition;
     //Should this class have inside some  timer?
     //this manager should own answered questions.
     //this manager should own skipped questions.
@@ -27,22 +27,22 @@ public class TestManager {
     public static TestManager getInstance() {
         return INSTANCE;
     }
-    public static void setOwnedTest(Test test) {
+    public void setOwnedTest(Test test) {
         sOwnedTest = test;
     }
-    public static void setOwnedTest(int test_position) {
+    public void setOwnedTest(int test_position) {
         if(test_position > 0 && test_position < sImportedDb.size()) {
             sOwnedTest = sImportedDb.get(test_position);
         }
     }
-    public static Test getOwnedTest() {
+    public Test getOwnedTest() {
            return sOwnedTest;
     }
-    public static void setImportedDb(List<Test>list) {
+    public void setImportedDb(List<Test>list) {
         sImportedDb = list;
     }
     //Lets  rebuild our test by selecting random questions and setting new object to us;
-    public static void startTest(int test_id) {
+    public void startTest(int test_id) {
         if(test_id > sImportedDb.size() || test_id <0) {
             return;
         }
@@ -57,13 +57,13 @@ public class TestManager {
         sOwnedTest = new Test(quiz_list,sOwnedTest.getTestName(),sOwnedTest.getDescription());
         sPosition=0;
     }
-    public static void endTest(){
+    public void endTest(){
         //get some results
         //maybe stop the timer?
         //??
     }
     //answer index is number of answer on plate (number of checkbox)
-    public static void answerQuestion(int answer_index) {
+    public void answerQuestion(int answer_index) {
         if(sPosition>sOwnedTest.getQuestionsCount()) { return; }
 
         //????
@@ -71,13 +71,13 @@ public class TestManager {
         sPosition++;//lets move to next question
     }
     //here we should know what question we are now dealing
-    public static int getPosition(){
+    public int getPosition(){
             return sPosition;
     }
-    public static Question getCurrentQuestion(){
+    public Question getCurrentQuestion(){
         return sOwnedTest.getQuestions().get(sPosition);
     }
-    public static void skipQuestion() {
+    public void skipQuestion() {
         sPosition++;
     }
 }
