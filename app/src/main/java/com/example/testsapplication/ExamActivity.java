@@ -29,7 +29,6 @@ public class ExamActivity extends AppCompatActivity {
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //This is not working at all, for some reason
                 Fragment questionFragment = new QuestionFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

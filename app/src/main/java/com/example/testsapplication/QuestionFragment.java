@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 
 public class QuestionFragment extends Fragment {
@@ -28,7 +30,17 @@ public class QuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_question, container, false);
+        View returnView=inflater.inflate(R.layout.fragment_question, container, false);
+        RadioGroup radioGroup = (RadioGroup) returnView.findViewById(R.id.groupradio);
+       /*
+        //amount of answers
+        for (int i = 1; i <= ; i++) {
+            RadioButton rdbtn = new RadioButton(getContext());
+            //rdbtn.setId(View.generateViewId());  ?? maybe wrap it inside of the API version check
+            rdbtn.setText("");
+            radioGroup.addView(rdbtn);
+        }*/
+
+        return returnView;
     }
 }
