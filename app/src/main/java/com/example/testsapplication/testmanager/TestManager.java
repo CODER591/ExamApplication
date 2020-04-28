@@ -15,8 +15,8 @@ import java.util.List;
 
 public class TestManager {
     private static final TestManager INSTANCE = new TestManager();
-    private List<Test> sImportedDb;   // all parsed json is here
-    private Test  sOwnedTest; //test that we are passing
+    private List<Test> mImportedDb;   // all parsed json is here
+    private Test  mOwnedTest; //test that we are passing
     private int sPosition;
     //Should this class have inside some  timer?
     //this manager should own answered questions.
@@ -28,33 +28,34 @@ public class TestManager {
         return INSTANCE;
     }
     public void setOwnedTest(Test test) {
-        sOwnedTest = test;
+        mOwnedTest = test;
     }
     public void setOwnedTest(int test_position) {
-        if(test_position > 0 && test_position < sImportedDb.size()) {
-            sOwnedTest = sImportedDb.get(test_position);
+        if(test_position > 0 && test_position < mImportedDb.size()) {
+            mOwnedTest = mImportedDb.get(test_position);
         }
     }
     public Test getOwnedTest() {
-           return sOwnedTest;
+           return mOwnedTest;
     }
     public void setImportedDb(List<Test>list) {
-        sImportedDb = list;
+        mImportedDb = list;
     }
+    public List<Test> getImportedDb(){ return mImportedDb; }
     //Lets  rebuild our test by selecting random questions and setting new object to us;
     public void startTest(int test_id) {
-        if(test_id > sImportedDb.size() || test_id <0) {
+        if(test_id > mImportedDb.size() || test_id <0) {
             return;
         }
-        sOwnedTest = sImportedDb.get(test_id);
-        List<Question> imported_qs= sOwnedTest.getQuestions();
+        mOwnedTest = mImportedDb.get(test_id);
+        List<Question> imported_qs= mOwnedTest.getQuestions();
         List<Question> quiz_list=new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             //HERE IS BUG we can push in list some duplicated questions
             int random =(int) Math.random() * imported_qs.size();
             quiz_list.add(imported_qs.get(random));
         }
-        sOwnedTest = new Test(quiz_list,sOwnedTest.getTestName(),sOwnedTest.getDescription());
+        mOwnedTest = new Test(quiz_list,mOwnedTest.getTestName(),mOwnedTest.getDescription());
         sPosition=0;
     }
     public void endTest(){
@@ -64,7 +65,7 @@ public class TestManager {
     }
     //answer index is number of answer on plate (number of checkbox)
     public void answerQuestion(int answer_index) {
-        if(sPosition>sOwnedTest.getQuestionsCount()) { return; }
+        if(sPosition>mOwnedTest.getQuestionsCount()) { return; }
 
         //????
 
@@ -75,7 +76,7 @@ public class TestManager {
             return sPosition;
     }
     public Question getCurrentQuestion(){
-        return sOwnedTest.getQuestions().get(sPosition);
+        return mOwnedTest.getQuestions().get(sPosition);
     }
     public void skipQuestion() {
         sPosition++;

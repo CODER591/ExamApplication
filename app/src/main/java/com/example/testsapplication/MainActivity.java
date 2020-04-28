@@ -25,35 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        JSONProvider loaded_json_resource;
-        ExamDB exam;
-        try {
-            loaded_json_resource = new JSONProvider();
-            loaded_json_resource.loadJSONFromResourceFile(getApplicationContext(),R.raw.first_test);
-            exam = new JsonBasedExamDB(loaded_json_resource.getJsonDB());
-
-
-            // TestApplication app = new TestApplication(exam);
-           // TestManager.getInstance().setImportedDb(database.getAllTests());
-            TestManager.getInstance().setImportedDb(exam.getAllTests());
-
-            mTestsListView = findViewById(R.id.rv_layout);
-            LinearLayoutManager manager = new LinearLayoutManager(this);
-            mTestsListView.setLayoutManager(manager);
-            mTestsListView.setHasFixedSize(true);
-            mTestAdapter = new TestAdapter(exam.getAllTests());
-            mTestsListView.setAdapter(mTestAdapter);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-
-
+        mTestsListView = findViewById(R.id.rv_layout);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        mTestsListView.setLayoutManager(manager);
+        mTestsListView.setHasFixedSize(true);
+        mTestAdapter = new TestAdapter(TestManager.getInstance().getImportedDb());
+        mTestsListView.setAdapter(mTestAdapter);
 
     }
 }
