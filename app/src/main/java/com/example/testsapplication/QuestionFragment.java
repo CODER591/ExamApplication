@@ -58,7 +58,7 @@ public class QuestionFragment extends Fragment {
 
         Question curr_question = TestManager.getInstance().getCurrentExam().getCurrentQuestion();
         tv_question_body.setText(curr_question.getBody());
-        tv_question_number.setText(String.valueOf(TestManager.getInstance().getCurrentExam().getPosition()+1)+"/10");
+        tv_question_number.setText(String.valueOf(TestManager.getInstance().getCurrentExam().getPosition()+1)+"/10"); //Here is crash on last position
         List<Answer> answer_list = curr_question.getAnswers();
         for(Answer answer:answer_list) {
             RadioButton rdbtn = new RadioButton(getContext());
