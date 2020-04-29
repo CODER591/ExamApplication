@@ -16,18 +16,18 @@ import com.example.testsapplication.testmanager.TestManager;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StartTestPageFragment#newInstance} factory method to
+ * Use the {@link StartExamPageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StartTestPageFragment extends Fragment {
+public class StartExamPageFragment extends Fragment {
 
 
-    public StartTestPageFragment() {
+    public StartExamPageFragment() {
         // Required empty public constructor
     }
 
-    public static StartTestPageFragment newInstance() {
-        return new StartTestPageFragment();
+    public static StartExamPageFragment newInstance() {
+        return new StartExamPageFragment();
     }
 
     @Override
@@ -39,8 +39,7 @@ public class StartTestPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_start_test_page, container, false);
-        //looks like this below should be moved to other fragment
+        View view = inflater.inflate(R.layout.fragment_start_exam_page, container, false);
         final Button start_btn = view.findViewById(R.id.test_start_button);
         final TextView test_name_view = view.findViewById(R.id.test_name);
         final TextView test_description_view = view.findViewById(R.id.test_description);
@@ -53,9 +52,7 @@ public class StartTestPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                // start test
-                // start timer
-                // go to fragment
+
 
                 Fragment questionFragment = new QuestionFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();

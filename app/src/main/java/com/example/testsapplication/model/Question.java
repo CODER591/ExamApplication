@@ -17,4 +17,5 @@ public class Question {
     public int getAnswerCount() {
         return mAnswers.size();
     }
+    public List<Answer> getAnswers() { return mAnswers;}
 }
