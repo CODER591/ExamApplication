@@ -22,8 +22,9 @@ public class Exam {
                 List<Question> imported_qs= test.getQuestions();
                 mQuizList=new ArrayList<>();
                 for(int i = 0; i < 10; i++) {
+                        //FIX ME !!
                         //HERE IS BUG we can push in list some duplicated questions
-                        int random =(int) Math.random() * imported_qs.size();
+                        int random =(int) (Math.random() * imported_qs.size());
                         mQuizList.add(imported_qs.get(random));
                 }
                 mPosition=0;

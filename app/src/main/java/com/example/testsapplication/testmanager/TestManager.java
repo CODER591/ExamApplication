@@ -25,10 +25,7 @@ public class TestManager {
     public static TestManager getInstance() {
         return INSTANCE;
     }
-    public void setOwnedTest(Test test) {
-        mCurrentExam = new Exam(test);
-    }
-    public void startTest(int test_position) {
+    public void createExamFor(int test_position) {
         mCurrentExam = new Exam(mImportedDb.get(test_position));
         mCurrentExam.startExam();
     }

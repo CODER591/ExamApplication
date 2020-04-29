@@ -47,7 +47,7 @@ public class QuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         View returnView = inflater.inflate(R.layout.fragment_question, container, false);
         answer_button = returnView.findViewById(R.id.answer_button);
-        skip_button = returnView.findViewById(R.id.answer_button);
+        skip_button = returnView.findViewById(R.id.skip_button);
         TextView tv_question_body = returnView.findViewById(R.id.question_body);
         TextView tv_question_number = returnView.findViewById(R.id.question_number);
         RadioGroup radioGroup = (RadioGroup) returnView.findViewById(R.id.answers_radio_group);
@@ -71,12 +71,22 @@ public class QuestionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TestManager.getInstance().getCurrentExam().answerQuestion(5);
+                Fragment questionFragment = new QuestionFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, questionFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
-        answer_button.setOnClickListener(new View.OnClickListener() {
+        skip_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TestManager.getInstance().getCurrentExam().skipQuestion();
+                Fragment questionFragment = new QuestionFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, questionFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

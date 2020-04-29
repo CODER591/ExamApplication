@@ -15,7 +15,7 @@ public class ExamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_start);
 
         Bundle bundle = getIntent().getExtras();
-        TestManager.getInstance().startTest(bundle.getInt("AdapterPosition"));
+        TestManager.getInstance().createExamFor(bundle.getInt("AdapterPosition"));
         Fragment startTestPageFragment = new StartExamPageFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, startTestPageFragment);
