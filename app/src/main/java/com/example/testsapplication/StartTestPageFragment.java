@@ -56,6 +56,12 @@ public class StartTestPageFragment extends Fragment {
                 // start test
                 // start timer
                 // go to fragment
+
+                Fragment questionFragment = new QuestionFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, questionFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         return view;
