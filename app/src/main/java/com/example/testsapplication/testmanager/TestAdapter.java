@@ -1,6 +1,7 @@
 package com.example.testsapplication.testmanager;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder>{
-    private List<String> sTestNames;
-    private int mNumberItems;
+    private List<String> mTestNames;
     public TestAdapter(List<Test> tests) {
-        sTestNames=new ArrayList<>();
-        mNumberItems = tests.size();
-        for(int i=0;i<tests.size();i++) {
-            sTestNames.add(tests.get(i).getTestName());
+        mTestNames=new ArrayList<>();
+        for (Test test : tests) {
+            mTestNames.add(test.getTestName());
         }
 
     }
@@ -43,7 +42,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
 
     @Override
     public int getItemCount() {
-        return mNumberItems;
+        return mTestNames.size();
     }
 
     class TestViewHolder extends RecyclerView.ViewHolder {
@@ -56,9 +55,10 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
             viewHolderIndex.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    TestManager.getInstance().setOwnedTest(getAdapterPosition());
                     Intent activity = new Intent(v.getContext(), ExamActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("AdapterPosition",getAdapterPosition());
+                    activity.putExtras(bundle);
                     activity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     v.getContext().startActivity(activity);
                 }
@@ -66,7 +66,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
             );
         }
         public void bind(int listIndex) {
-            viewHolderIndex.setText(sTestNames.get(listIndex));
+            viewHolderIndex.setText(mTestNames.get(listIndex));
         }
     }
 

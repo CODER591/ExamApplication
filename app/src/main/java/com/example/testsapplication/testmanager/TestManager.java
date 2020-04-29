@@ -28,10 +28,14 @@ public class TestManager {
     public void setOwnedTest(Test test) {
         mCurrentExam = new Exam(test);
     }
-    public void setOwnedTest(int test_position) {
+    public void startTest(int test_position) {
         mCurrentExam = new Exam(mImportedDb.get(test_position));
+        mCurrentExam.startExam();
     }
-    public Exam getOwnedTest() {
+    public void endTest(){
+        mCurrentExam.endExam();
+    }
+    public Exam getCurrentExam() {
         return mCurrentExam;
     }
     public void setImportedDb(List<Test>list) {
@@ -41,12 +45,7 @@ public class TestManager {
         return mImportedDb;
     }
 
-    public void startTest() {
-        mCurrentExam.startExam();
-    }
-    public void endTest(){
-        mCurrentExam.endExam();
-    }
+    //do I really need it?
     //answer index is number of answer on plate (number of checkbox)
     public void answerQuestion(int answer_index) {
         mCurrentExam.answerQuestion(answer_index);

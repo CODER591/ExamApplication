@@ -42,7 +42,7 @@
     <RadioGroup
 
         android:layout_marginTop="50dp"
-        android:id="@+id/groupradio"
+        android:id="@+id/answers_radio_group"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -47,10 +47,10 @@ public class Exam {
                 return mQuizList.get(mPosition);  //refactor
         }
 
-        public String getExamName(){
+        public String getName(){
                 return mExamName;
         }
-        public String getExamDescription() {
+        public String getDescription() {
                 return mExamDescription;
         }
 

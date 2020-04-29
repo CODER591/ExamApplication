@@ -18,11 +18,16 @@ public class ExamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_start);
 
+        Bundle bundle = getIntent().getExtras();
+        int adapter_position = bundle.getInt("AdapterPosition");
+
         final Button start_btn = findViewById(R.id.test_start_button);
         final TextView test_name_view = findViewById(R.id.test_name);
         final TextView test_description_view = findViewById(R.id.test_description);
-        String testname = TestManager.getInstance().getOwnedTest().getExamName();
-        String description = TestManager.getInstance().getOwnedTest().getExamDescription();
+        
+        TestManager.getInstance().startTest(adapter_position);
+        String testname = TestManager.getInstance().getCurrentExam().getExamName();
+        String description = TestManager.getInstance().getCurrentExam().getExamDescription();
         test_name_view.setText(testname);
         test_description_view.setText(description);
 
