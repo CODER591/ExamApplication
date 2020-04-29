@@ -18,8 +18,7 @@ public class QuestionFragment extends Fragment {
     }
 
     public static QuestionFragment newInstance() {
-        QuestionFragment fragment = new QuestionFragment();
-        return fragment;
+        return new QuestionFragment();
     }
 
     @Override

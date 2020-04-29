@@ -21,8 +21,8 @@ public class ExamActivity extends AppCompatActivity {
         final Button start_btn = findViewById(R.id.test_start_button);
         final TextView test_name_view = findViewById(R.id.test_name);
         final TextView test_description_view = findViewById(R.id.test_description);
-        String testname = TestManager.getInstance().getOwnedTest().getTestName();
-        String description = TestManager.getInstance().getOwnedTest().getDescription();
+        String testname = TestManager.getInstance().getOwnedTest().getExamName();
+        String description = TestManager.getInstance().getOwnedTest().getExamDescription();
         test_name_view.setText(testname);
         test_description_view.setText(description);
 
