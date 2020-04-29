@@ -19,35 +19,12 @@ public class ExamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_start);
 
         Bundle bundle = getIntent().getExtras();
-        int adapter_position = bundle.getInt("AdapterPosition");
-
-        final Button start_btn = findViewById(R.id.test_start_button);
-        final TextView test_name_view = findViewById(R.id.test_name);
-        final TextView test_description_view = findViewById(R.id.test_description);
-        
-        TestManager.getInstance().startTest(adapter_position);
-        String testname = TestManager.getInstance().getCurrentExam().getExamName();
-        String description = TestManager.getInstance().getCurrentExam().getExamDescription();
-        test_name_view.setText(testname);
-        test_description_view.setText(description);
-
-        start_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //This is not working at all, for some reason
-                Fragment questionFragment = new QuestionFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.fragment_container, questionFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-                // start test
-                // start timer
-                // go to fragment
-            }
-        });
-
-
+        TestManager.getInstance().startTest(bundle.getInt("AdapterPosition"));
+        Fragment startTestPageFragment = new StartTestPageFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, startTestPageFragment);
+        //if add to back stack here we got an empty page
+        transaction.commit();
 
     }
 }
