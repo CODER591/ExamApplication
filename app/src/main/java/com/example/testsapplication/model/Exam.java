@@ -35,6 +35,7 @@ public class Exam {
         public void endExam() {
 
         }
+        //answer index is number of answer on plate (number of checkbox)
         public void answerQuestion(int q_id) {
                 mPosition++;
         }

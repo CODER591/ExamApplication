@@ -27,10 +27,6 @@ public class TestManager {
     }
     public void createExamFor(int test_position) {
         mCurrentExam = new Exam(mImportedDb.get(test_position));
-        mCurrentExam.startExam();
-    }
-    public void endTest(){
-        mCurrentExam.endExam();
     }
     public Exam getCurrentExam() {
         return mCurrentExam;
@@ -40,11 +36,5 @@ public class TestManager {
     }
     public List<Test> getImportedDb(){
         return mImportedDb;
-    }
-
-    //do I really need it?
-    //answer index is number of answer on plate (number of checkbox)
-    public void answerQuestion(int answer_index) {
-        mCurrentExam.answerQuestion(answer_index);
     }
 }
