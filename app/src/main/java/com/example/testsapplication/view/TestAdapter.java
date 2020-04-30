@@ -1,4 +1,4 @@
-package com.example.testsapplication.testmanager;
+package com.example.testsapplication.view;
 
 import android.content.Intent;
 import android.os.Bundle;

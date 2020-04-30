@@ -13,15 +13,17 @@ public class Exam {
         private String mExamDescription;
         private int mPosition;
         List<Question> mQuizList;  // those questions should be replaced on another entity that would know whether it answered or Not
+        private int mExamQuestionsCount;
         public  Exam() {
 
         }
         public Exam(Test test) {
                 mExamName = test.getTestName();
                 mExamDescription = test.getDescription();
+                mExamQuestionsCount = 10;
                 List<Question> imported_qs= test.getQuestions();
-                mQuizList=new ArrayList<>();
-                for(int i = 0; i < 10; i++) {
+                mQuizList = new ArrayList<>();
+                for(int i = 0; i < mExamQuestionsCount; i++) {
                         //FIX ME !!
                         //HERE IS BUG we can push in list some duplicated questions
                         int random =(int) (Math.random() * imported_qs.size());
@@ -46,7 +48,7 @@ public class Exam {
                 mPosition++;
         }
         public Question getCurrentQuestion() {
-                return mQuizList.get(mPosition);  //refactor
+                return mQuizList.get(mPosition);
         }
 
         public String getName(){
@@ -54,6 +56,9 @@ public class Exam {
         }
         public String getDescription() {
                 return mExamDescription;
+        }
+        public int getExamQuestionsCount(){
+                return mExamQuestionsCount;
         }
 }
 

@@ -6,12 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import org.json.*;
-
-import com.example.testsapplication.composeexamdb.ExamDB;
-import com.example.testsapplication.composeexamdb.JSONProvider;
-import com.example.testsapplication.composeexamdb.JsonBasedExamDB;
-import com.example.testsapplication.testmanager.TestAdapter;
+import com.example.testsapplication.view.TestAdapter;
 import com.example.testsapplication.testmanager.TestManager;
 
 

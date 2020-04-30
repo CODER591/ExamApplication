@@ -57,8 +57,10 @@ public class QuestionFragment extends Fragment {
         */
 
         Question curr_question = TestManager.getInstance().getCurrentExam().getCurrentQuestion();
+        String position = String.valueOf(TestManager.getInstance().getCurrentExam().getPosition()+1);
+        String max_position = String.valueOf(TestManager.getInstance().getCurrentExam().getExamQuestionsCount());
         tv_question_body.setText(curr_question.getBody());
-        tv_question_number.setText(String.valueOf(TestManager.getInstance().getCurrentExam().getPosition()+1)+"/10"); //Here is crash on last position
+        tv_question_number.setText(position+"/"+max_position);
         List<Answer> answer_list = curr_question.getAnswers();
         for(Answer answer:answer_list) {
             RadioButton rdbtn = new RadioButton(getContext());
@@ -71,28 +73,40 @@ public class QuestionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TestManager.getInstance().getCurrentExam().answerQuestion(5);
-                Fragment questionFragment = new QuestionFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, questionFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
+                if((TestManager.getInstance().getCurrentExam().getExamQuestionsCount()-TestManager.getInstance().getCurrentExam().getPosition()==1)) {
+                    Fragment finalfragment =new FinishPageFragment();
+                    navigateToFragment(finalfragment);
+                }else {
+                    TestManager.getInstance().getCurrentExam().skipQuestion();
+                    Fragment questionFragment = new QuestionFragment();
+                    navigateToFragment(questionFragment);
+                }
             }
         });
         skip_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TestManager.getInstance().getCurrentExam().skipQuestion();
-                Fragment questionFragment = new QuestionFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, questionFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if((TestManager.getInstance().getCurrentExam().getExamQuestionsCount()-TestManager.getInstance().getCurrentExam().getPosition()==1)) {
+                    Fragment finalfragment =new FinishPageFragment();
+                    navigateToFragment(finalfragment);
+                }else {
+                    TestManager.getInstance().getCurrentExam().skipQuestion();
+                    Fragment questionFragment = new QuestionFragment();
+                    navigateToFragment(questionFragment);
+                }
             }
         });
 
         return returnView;
     }
+    public void navigateToFragment(Fragment fragment) {
 
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
