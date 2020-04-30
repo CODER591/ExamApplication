@@ -50,17 +50,14 @@ public class QuestionFragment extends Fragment {
         skip_button = returnView.findViewById(R.id.skip_button);
         TextView tv_question_body = returnView.findViewById(R.id.question_body);
         TextView tv_question_number = returnView.findViewById(R.id.question_number);
-        RadioGroup radioGroup = (RadioGroup) returnView.findViewById(R.id.answers_radio_group);
+        final RadioGroup radioGroup = (RadioGroup) returnView.findViewById(R.id.answers_radio_group);
 
-        /* General comment regarding this Fragment
-        *  We should detect what radio button is checked to figure out what answer was provided
-        */
-
-        Question curr_question = TestManager.getInstance().getCurrentExam().getCurrentQuestion();
+        final Question curr_question = TestManager.getInstance().getCurrentExam().getCurrentQuestion();
         String position = String.valueOf(TestManager.getInstance().getCurrentExam().getPosition()+1);
         String max_position = String.valueOf(TestManager.getInstance().getCurrentExam().getExamQuestionsCount());
         tv_question_body.setText(curr_question.getBody());
-        tv_question_number.setText(position+"/"+max_position);
+        tv_question_number.setText(position + "/" + max_position);
+
         List<Answer> answer_list = curr_question.getAnswers();
         for(Answer answer:answer_list) {
             RadioButton rdbtn = new RadioButton(getContext());
@@ -72,13 +69,19 @@ public class QuestionFragment extends Fragment {
        answer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TestManager.getInstance().getCurrentExam().answerQuestion(5);
+
+                /* General comment regarding this Fragment
+                 *  We should detect what radio button is checked to figure out what answer was provided
+                 */
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                View radioButton = radioGroup.findViewById(radioButtonID);
+                int idx = radioGroup.indexOfChild(radioButton); // here we know the index of answer
 
                 if((TestManager.getInstance().getCurrentExam().getExamQuestionsCount()-TestManager.getInstance().getCurrentExam().getPosition()==1)) {
                     Fragment finalfragment =new FinishPageFragment();
                     navigateToFragment(finalfragment);
                 }else {
-                    TestManager.getInstance().getCurrentExam().skipQuestion();
+                    TestManager.getInstance().getCurrentExam().answerQuestion(idx);
                     Fragment questionFragment = new QuestionFragment();
                     navigateToFragment(questionFragment);
                 }
@@ -100,7 +103,7 @@ public class QuestionFragment extends Fragment {
 
         return returnView;
     }
-    public void navigateToFragment(Fragment fragment) {
+    private void navigateToFragment(Fragment fragment) {
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);

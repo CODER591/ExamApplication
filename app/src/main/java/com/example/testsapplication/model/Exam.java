@@ -14,6 +14,11 @@ public class Exam {
         private int mPosition;
         List<Question> mQuizList;  // those questions should be replaced on another entity that would know whether it answered or Not
         private int mExamQuestionsCount;
+
+        private int mCorrectAnswers;
+        private int mSkippedQuestions;
+
+
         public  Exam() {
 
         }
@@ -31,26 +36,16 @@ public class Exam {
                 }
                 mPosition=0;
         }
-        public void startExam() {
-
-        }
-        public void endExam() {
-
-        }
-        //answer index is number of answer on plate (number of checkbox)
-        public void answerQuestion(int q_id) {
-                mPosition++;
-        }
         public int getPosition(){
                 return mPosition;
         }
         public void skipQuestion() {
+                mSkippedQuestions++;
                 mPosition++;
         }
         public Question getCurrentQuestion() {
                 return mQuizList.get(mPosition);
         }
-
         public String getName(){
                 return mExamName;
         }
@@ -60,6 +55,31 @@ public class Exam {
         public int getExamQuestionsCount(){
                 return mExamQuestionsCount;
         }
+
+        public void startExam() {
+                //set up timer
+        }
+        public void endExam() {
+                //stop timer
+        }
+        //answer index is number of answer on plate (number of checkbox)
+        //also review after scoring refactoring
+        public void answerQuestion(int ans_id) {
+                if(getCurrentQuestion().checkAnswer(ans_id)) {
+                        mCorrectAnswers++;
+                }
+                mPosition++;
+        }
+        public int getCorrectAnswers() {
+                return mCorrectAnswers;
+        }
+        public int getSkippedQuestions() {
+                return mSkippedQuestions;
+        }
+        public int getIncorrectAnswers() {
+                return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
+        }
+
 }
 
 

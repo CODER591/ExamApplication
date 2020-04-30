@@ -18,4 +18,9 @@ public class Question {
         return mAnswers.size();
     }
     public List<Answer> getAnswers() { return mAnswers;}
+
+    //delete after scoring refactoring
+    public boolean checkAnswer(int index){
+        return mAnswers.get(index).is_Correct();
+    }
 }
