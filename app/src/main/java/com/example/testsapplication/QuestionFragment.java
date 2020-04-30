@@ -45,6 +45,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View returnView = inflater.inflate(R.layout.fragment_question, container, false);
         answer_button = returnView.findViewById(R.id.answer_button);
         skip_button = returnView.findViewById(R.id.skip_button);
@@ -65,19 +66,17 @@ public class QuestionFragment extends Fragment {
             rdbtn.setText(answer.getAnsBody());
             radioGroup.addView(rdbtn);
         }
-
+        final int exam_questions_count =TestManager.getInstance().getCurrentExam().getExamQuestionsCount();
+        final int current_q_position=TestManager.getInstance().getCurrentExam().getPosition();
        answer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                /* General comment regarding this Fragment
-                 *  We should detect what radio button is checked to figure out what answer was provided
-                 */
-                int radioButtonID = radioGroup.getCheckedRadioButtonId();
-                View radioButton = radioGroup.findViewById(radioButtonID);
-                int idx = radioGroup.indexOfChild(radioButton); // here we know the index of answer
+                final int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                final View radioButton = radioGroup.findViewById(radioButtonID);
+                final int idx = radioGroup.indexOfChild(radioButton); // here we know the index of answer
 
-                if((TestManager.getInstance().getCurrentExam().getExamQuestionsCount()-TestManager.getInstance().getCurrentExam().getPosition()==1)) {
+                if(exam_questions_count - current_q_position  == 1) {
                     Fragment finalfragment =new FinishPageFragment();
                     navigateToFragment(finalfragment);
                 }else {
@@ -90,7 +89,7 @@ public class QuestionFragment extends Fragment {
         skip_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if((TestManager.getInstance().getCurrentExam().getExamQuestionsCount()-TestManager.getInstance().getCurrentExam().getPosition()==1)) {
+                if(exam_questions_count - current_q_position == 1) {
                     Fragment finalfragment =new FinishPageFragment();
                     navigateToFragment(finalfragment);
                 }else {
