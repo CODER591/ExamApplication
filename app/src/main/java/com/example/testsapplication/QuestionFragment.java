@@ -30,8 +30,6 @@ import java.util.Locale;
 
 public class QuestionFragment extends Fragment {
 
-  private Button answer_button;
-  private Button skip_button;
   private TextView display_time;
 
   public QuestionFragment() {
@@ -53,8 +51,8 @@ public class QuestionFragment extends Fragment {
                            Bundle savedInstanceState) {
 
     View returnView = inflater.inflate(R.layout.fragment_question, container, false);
-    answer_button = returnView.findViewById(R.id.answer_button);
-    skip_button = returnView.findViewById(R.id.skip_button);
+    Button answer_button = returnView.findViewById(R.id.answer_button);
+    Button skip_button = returnView.findViewById(R.id.skip_button);
     display_time = returnView.findViewById(R.id.time_shower);
     TextView tv_question_body = returnView.findViewById(R.id.question_body);
     TextView tv_question_number = returnView.findViewById(R.id.question_number);
@@ -127,6 +125,12 @@ public class QuestionFragment extends Fragment {
     return returnView;
   }
 
+  @Override
+  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+
+  }
+
   private void navigateToFragment(Fragment fragment) {
     FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.fragment_container, fragment);
@@ -138,11 +142,5 @@ public class QuestionFragment extends Fragment {
     int minutes = (int) (time / 1000) / 60;
     int seconds = (int) (time / 1000) % 60;
     display_time.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-  }
-
-  @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
-
   }
 }

@@ -9,17 +9,16 @@ import java.util.List;
 import java.util.Locale;
 
 
-//should manage the running test directly
 public class ExamController {
   private String mExamName;
   private String mExamDescription;
   private int mPosition;
-  List<Question> mQuizList;  // those questions should be replaced on another entity that would know whether it answered or Not
+  List<Question> mQuizList;
   private Integer mExamQuestionsCount;
 
   private int mCorrectAnswers;
   private int mSkippedQuestions;
-  private List<Integer> mQnA; //this list contains id of provided answer
+  private List<Integer> mQnA;
 
   private CountDownTimer mCountDownTimer;
   private long mTimeLeftInMillis;
@@ -80,7 +79,7 @@ public class ExamController {
     return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
   }
 
-  //answer index is number of answer on plate (number of checkbox)
+  /* answer index is  number of checkbox */
   public void answerQuestion(int ans_id) {
     mQnA.set(mPosition, ans_id);
     if (mQuizList.get(mPosition).getAnswers().get(ans_id).is_Correct()) {

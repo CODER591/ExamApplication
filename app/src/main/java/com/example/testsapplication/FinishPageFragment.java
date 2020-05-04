@@ -17,7 +17,6 @@ import com.example.testsapplication.testmanager.TestManager;
 
 public class FinishPageFragment extends Fragment {
 
-
   public FinishPageFragment() {
     // Required empty public constructor
   }
@@ -36,7 +35,6 @@ public class FinishPageFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_finish_page, container, false);
     TextView tv_right_ans = view.findViewById(R.id.right_answers);
     Button fin_btn = view.findViewById(R.id.finish_button);
@@ -46,7 +44,6 @@ public class FinishPageFragment extends Fragment {
     fin_btn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
         Intent i = new Intent(getActivity(), MainActivity.class);
         startActivity(i);
       }

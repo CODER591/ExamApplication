@@ -21,7 +21,6 @@ public class ExamActivity extends AppCompatActivity {
     Fragment startTestPageFragment = new StartExamPageFragment();
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     transaction.add(R.id.fragment_container, startTestPageFragment);
-    //if add to back stack here we got an empty page
     transaction.commit();
 
   }
