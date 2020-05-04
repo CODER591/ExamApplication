@@ -1,10 +1,8 @@
 package com.example.testsapplication.testmanager;
 
-import com.example.testsapplication.model.Exam;
-import com.example.testsapplication.model.Question;
+import com.example.testsapplication.model.ExamController;
 import com.example.testsapplication.model.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +15,7 @@ import java.util.List;
 public class TestManager {
     private static final TestManager INSTANCE = new TestManager();
     private List<Test> mImportedDb;   // all parsed json is here
-    private Exam mCurrentExam; //test that we are passing
+    private ExamController mCurrentExam; //test that we are passing
     private int mPosition;
     TestManager() {
 
@@ -26,9 +24,9 @@ public class TestManager {
         return INSTANCE;
     }
     public void createExamFor(int test_position) {
-        mCurrentExam = new Exam(mImportedDb.get(test_position));
+        mCurrentExam = new ExamController(mImportedDb.get(test_position));
     }
-    public Exam getCurrentExam() {
+    public ExamController getCurrentExam() {
         return mCurrentExam;
     }
     public void setImportedDb(List<Test>list) {

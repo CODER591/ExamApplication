@@ -18,13 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder>{
-    private List<String> mTestNames;
+    private List<Test> mTests;
     public TestAdapter(List<Test> tests) {
-        mTestNames=new ArrayList<>();
-        for (Test test : tests) {
-            mTestNames.add(test.getTestName());
-        }
-
+        mTests = tests;
     }
     @NonNull
     @Override
@@ -42,7 +38,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
 
     @Override
     public int getItemCount() {
-        return mTestNames.size();
+        return mTests.size();
     }
 
     class TestViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +62,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder
             );
         }
         public void bind(int listIndex) {
-            viewHolderIndex.setText(mTestNames.get(listIndex));
+            viewHolderIndex.setText(mTests.get(listIndex).getTestName());
         }
     }
 

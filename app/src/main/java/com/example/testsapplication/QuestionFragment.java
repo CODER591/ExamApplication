@@ -75,14 +75,15 @@ public class QuestionFragment extends Fragment {
                 final int radioButtonID = radioGroup.getCheckedRadioButtonId();
                 final View radioButton = radioGroup.findViewById(radioButtonID);
                 final int idx = radioGroup.indexOfChild(radioButton); // here we know the index of answer
-
-                if(exam_questions_count - current_q_position  == 1) {
-                    Fragment finalfragment =new FinishPageFragment();
-                    navigateToFragment(finalfragment);
-                }else {
-                    TestManager.getInstance().getCurrentExam().answerQuestion(idx);
-                    Fragment questionFragment = new QuestionFragment();
-                    navigateToFragment(questionFragment);
+                if(idx != -1) {
+                   if (exam_questions_count - current_q_position == 1) {
+                       Fragment finalfragment = new FinishPageFragment();
+                       navigateToFragment(finalfragment);
+                   } else {
+                       TestManager.getInstance().getCurrentExam().answerQuestion(idx);
+                       Fragment questionFragment = new QuestionFragment();
+                       navigateToFragment(questionFragment);
+                   }
                 }
             }
         });

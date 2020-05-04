@@ -3,6 +3,7 @@ package com.example.testsapplication.model;
 import com.example.testsapplication.composeexamdb.ExamDB;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 
 //should manage the running test directly
-public class Exam {
+public class ExamController {
         private String mExamName;
         private String mExamDescription;
         private int mPosition;
@@ -19,33 +20,29 @@ public class Exam {
 
         private int mCorrectAnswers;
         private int mSkippedQuestions;
-        private HashMap <Integer,Integer> mQandA; //this map contains index of question in mQiz list and also id of provided answer
+        private List <Integer> mQnA; //this list contains index of question in mQiz list and also id of provided answer
 
 
-        public  Exam() {
+        public ExamController() {
 
         }
-        public Exam(Test test) {
+        public ExamController(Test test) {
                 mExamName = test.getTestName();
                 mExamDescription = test.getDescription();
                 mExamQuestionsCount = 10;
                 List<Question> imported_qs= test.getQuestions();
                 mQuizList = new ArrayList<>();
-                mQandA = new HashMap<>();
-                for(int i = 0; i < mExamQuestionsCount; i++) {
-                        //FIX ME !!
-                        //HERE IS BUG we can push in list some duplicated questions
-                        int random =(int) (Math.random() * imported_qs.size());
-                        mQuizList.add(imported_qs.get(random));
-                }
+                mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
+                importRandomQuestions(imported_qs);
                 mPosition = 0;
         }
         public int getPosition(){
                 return mPosition;
         }
         public void skipQuestion() {
-                mQandA.put(mPosition, -1);
-                mPosition++;
+                mQnA.set(mPosition, -1);
+                mSkippedQuestions++;
+                moveToNext();
         }
         public Question getCurrentQuestion() {
                 return mQuizList.get(mPosition);
@@ -64,12 +61,17 @@ public class Exam {
                 //set up timer
         }
         public void endExam() {
-                setResults();
                 //stop timer
         }
         //answer index is number of answer on plate (number of checkbox)
         public void answerQuestion(int ans_id) {
-                mQandA.put(mPosition, ans_id);
+                mQnA.set(mPosition,ans_id);
+                if(mQuizList.get(mPosition).getAnswers().get(ans_id).is_Correct()){
+                        mCorrectAnswers++;
+                }
+                moveToNext();
+        }
+        private void moveToNext() {
                 mPosition++;
         }
         public int getCorrectAnswers() {
@@ -81,20 +83,13 @@ public class Exam {
         public int getIncorrectAnswers() {
                 return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
         }
-        private  void setResults() {
-                for (Map.Entry<Integer, Integer> entry : mQandA.entrySet()) {
-                        Integer key = entry.getKey();
-                        Integer value = entry.getValue();
-                        if(value==-1) {
-                                mSkippedQuestions++;
-                        } else {
-                                if(mQuizList.get(key.intValue()).getAnswers().get(value.intValue()).is_Correct()){
-                                        mCorrectAnswers++;
-                                }
-                        }
-
+        private void importRandomQuestions(List<Question>imported_qs) {
+                for(int i = 0; i < mExamQuestionsCount; i++) {
+                        //FIX ME !!
+                        //HERE IS BUG we can push in list some duplicated questions
+                        int random =(int) (Math.random() * imported_qs.size());
+                        mQuizList.add(imported_qs.get(random));
                 }
-
         }
 }
 
