@@ -38,17 +38,6 @@ public class ExamController {
     mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
     mPosition = 0;
     mTimeLeftInMillis = 300000;
-    mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-      @Override
-      public void onTick(long millisUntilFinished) {
-        mTimeLeftInMillis = millisUntilFinished;
-      }
-
-      @Override
-      public void onFinish() {
-
-      }
-    };
   }
 
   public int getPosition() {
@@ -78,13 +67,13 @@ public class ExamController {
   }
 
   public void startExam() {
-    mCountDownTimer.start();
+
   }
 
   public void endExam() {
-    mCountDownTimer.cancel();
-  }
 
+  }
+ @Deprecated
   public String getTimeLeft() {
     int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
     int seconds = (int) (mTimeLeftInMillis / 1000) % 60;

@@ -40,12 +40,9 @@ public class FinishPageFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_finish_page, container, false);
     TextView tv_right_ans = view.findViewById(R.id.right_answers);
     Button fin_btn = view.findViewById(R.id.finish_button);
-    TextView spended_time = view.findViewById(R.id.time_left);
     int all_qst_quantity = TestManager.getInstance().getCurrentExam().getExamQuestionsCount();
     int right_ans_quantity = TestManager.getInstance().getCurrentExam().getCorrectAnswers();
-    String time_left_formatted = TestManager.getInstance().getCurrentExam().getTimeLeft();
     tv_right_ans.setText(String.valueOf(right_ans_quantity) + "/" + String.valueOf(all_qst_quantity));
-    spended_time.setText(time_left_formatted);
     fin_btn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
