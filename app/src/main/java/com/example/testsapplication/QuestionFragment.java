@@ -94,6 +94,7 @@ public class QuestionFragment extends Fragment {
         if (idx != -1) {
           if (exam_questions_count - current_q_position == 1) {
             QuestionTimer.cancel();
+            TestManager.getInstance().getCurrentExam().answerQuestion(idx);
             Fragment finalfragment = new FinishPageFragment();
             navigateToFragment(finalfragment);
           } else {
