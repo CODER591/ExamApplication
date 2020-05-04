@@ -68,7 +68,6 @@ public class Exam {
                 //stop timer
         }
         //answer index is number of answer on plate (number of checkbox)
-        //also review after scoring refactoring
         public void answerQuestion(int ans_id) {
                 mQandA.put(mPosition, ans_id);
                 mPosition++;
@@ -82,8 +81,6 @@ public class Exam {
         public int getIncorrectAnswers() {
                 return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
         }
-        //this function is to be used in case of deprecation passing by results scoring
-        //Collect here correct answers
         private  void setResults() {
                 for (Map.Entry<Integer, Integer> entry : mQandA.entrySet()) {
                         Integer key = entry.getKey();
