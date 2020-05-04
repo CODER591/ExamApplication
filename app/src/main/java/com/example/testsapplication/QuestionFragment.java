@@ -90,6 +90,7 @@ public class QuestionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(exam_questions_count - current_q_position == 1) {
+                    TestManager.getInstance().getCurrentExam().endExam();
                     Fragment finalfragment =new FinishPageFragment();
                     navigateToFragment(finalfragment);
                 }else {

@@ -46,6 +46,7 @@ public class FinishPageFragment extends Fragment {
         fin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
             }

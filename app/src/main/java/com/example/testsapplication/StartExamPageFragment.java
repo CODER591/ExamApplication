@@ -52,6 +52,7 @@ public class StartExamPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment questionFragment = new QuestionFragment();
+                TestManager.getInstance().getCurrentExam().startExam();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, questionFragment);
                 transaction.addToBackStack(null);
