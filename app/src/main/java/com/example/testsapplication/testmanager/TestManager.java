@@ -16,7 +16,7 @@ public class TestManager {
     private static final TestManager INSTANCE = new TestManager();
     private List<Test> mImportedDb;   // all parsed json is here
     private ExamController mCurrentExam; //test that we are passing
-    private int mPosition;
+
     TestManager() {
 
     }

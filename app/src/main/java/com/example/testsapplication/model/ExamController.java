@@ -20,8 +20,7 @@ public class ExamController {
 
         private int mCorrectAnswers;
         private int mSkippedQuestions;
-        private List <Integer> mQnA; //this list contains index of question in mQiz list and also id of provided answer
-
+        private List <Integer> mQnA; //this list contains id of provided answer
 
         public ExamController() {
 
@@ -29,11 +28,11 @@ public class ExamController {
         public ExamController(Test test) {
                 mExamName = test.getTestName();
                 mExamDescription = test.getDescription();
-                mExamQuestionsCount = 10;
+                mExamQuestionsCount = 2;
                 List<Question> imported_qs= test.getQuestions();
                 mQuizList = new ArrayList<>();
-                mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
                 importRandomQuestions(imported_qs);
+                mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
                 mPosition = 0;
         }
         public int getPosition(){
@@ -84,11 +83,13 @@ public class ExamController {
                 return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
         }
         private void importRandomQuestions(List<Question>imported_qs) {
+                List<Question> tmp_list= new ArrayList<>(imported_qs);
                 for(int i = 0; i < mExamQuestionsCount; i++) {
                         //FIX ME !!
                         //HERE IS BUG we can push in list some duplicated questions
                         int random =(int) (Math.random() * imported_qs.size());
-                        mQuizList.add(imported_qs.get(random));
+                        mQuizList.add(tmp_list.get(random));
+                        tmp_list.remove(random);
                 }
         }
 }
