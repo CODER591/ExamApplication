@@ -3,8 +3,10 @@ package com.example.testsapplication.model;
 import com.example.testsapplication.composeexamdb.ExamDB;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
+import java.util.Map;
 
 
 //should manage the running test directly
@@ -17,6 +19,7 @@ public class Exam {
 
         private int mCorrectAnswers;
         private int mSkippedQuestions;
+        private HashMap <Integer,Integer> mQandA; //this map contains index of question in mQiz list and also id of provided answer
 
 
         public  Exam() {
@@ -28,19 +31,20 @@ public class Exam {
                 mExamQuestionsCount = 10;
                 List<Question> imported_qs= test.getQuestions();
                 mQuizList = new ArrayList<>();
+                mQandA = new HashMap<>();
                 for(int i = 0; i < mExamQuestionsCount; i++) {
                         //FIX ME !!
                         //HERE IS BUG we can push in list some duplicated questions
                         int random =(int) (Math.random() * imported_qs.size());
                         mQuizList.add(imported_qs.get(random));
                 }
-                mPosition=0;
+                mPosition = 0;
         }
         public int getPosition(){
                 return mPosition;
         }
         public void skipQuestion() {
-                mSkippedQuestions++;
+                mQandA.put(mPosition, -1);
                 mPosition++;
         }
         public Question getCurrentQuestion() {
@@ -60,14 +64,13 @@ public class Exam {
                 //set up timer
         }
         public void endExam() {
+                setResults();
                 //stop timer
         }
         //answer index is number of answer on plate (number of checkbox)
         //also review after scoring refactoring
         public void answerQuestion(int ans_id) {
-                if(getCurrentQuestion().checkAnswer(ans_id)) {
-                        mCorrectAnswers++;
-                }
+                mQandA.put(mPosition, ans_id);
                 mPosition++;
         }
         public int getCorrectAnswers() {
@@ -79,7 +82,23 @@ public class Exam {
         public int getIncorrectAnswers() {
                 return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
         }
-        
+        //this function is to be used in case of deprecation passing by results scoring
+        //Collect here correct answers
+        private  void setResults() {
+                for (Map.Entry<Integer, Integer> entry : mQandA.entrySet()) {
+                        Integer key = entry.getKey();
+                        Integer value = entry.getValue();
+                        if(value==-1) {
+                                mSkippedQuestions++;
+                        } else {
+                                if(mQuizList.get(key.intValue()).getAnswers().get(value.intValue()).is_Correct()){
+                                        mCorrectAnswers++;
+                                }
+                        }
+
+                }
+
+        }
 }
 
 
