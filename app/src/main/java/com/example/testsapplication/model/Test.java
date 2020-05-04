@@ -8,7 +8,7 @@ public class Test {
   private String mTestName;
   private String mDescription;
   private List<Question> mQuestions;
-  private Integer mQuestionsInExam;  /* value(received from JSON) that represents only the our desision regarding how many questions will be selected from ALL questions array to the test*/
+  private Integer mQuestionsInExam;  /* value received from JSON that represents only the our desision regarding how many questions will be selected from ALL questions array to the test*/
 
   public Test() {
 

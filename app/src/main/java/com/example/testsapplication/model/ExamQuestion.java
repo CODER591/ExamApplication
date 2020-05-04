@@ -34,7 +34,6 @@ public class ExamQuestion {
     };
   }
 
-  //method should be
   public void questionChosen() {
     mQuestionTimer.start();
   }

@@ -13,12 +13,6 @@ import android.widget.TextView;
 
 import com.example.testsapplication.testmanager.TestManager;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link StartExamPageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class StartExamPageFragment extends Fragment {
 
   public StartExamPageFragment() {

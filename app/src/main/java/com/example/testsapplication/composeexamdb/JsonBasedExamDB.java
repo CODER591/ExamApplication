@@ -13,7 +13,6 @@ import com.example.testsapplication.model.Question;
 import com.example.testsapplication.model.Test;
 
 
-// detect Json files by path and stringify them
 public class JsonBasedExamDB implements ExamDB {
   private List<Test> mTests;
 

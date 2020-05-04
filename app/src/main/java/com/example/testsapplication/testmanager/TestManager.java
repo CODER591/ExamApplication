@@ -6,12 +6,7 @@ import com.example.testsapplication.model.Test;
 import java.util.List;
 
 
-//singleton
-
-// should manage running test
-//Questions should display in random order, answers should display in as they are in db
-
-
+/* Singleton */
 public class TestManager {
   private static final TestManager INSTANCE = new TestManager();
   private List<Test> mImportedDb;   // all parsed json is here

@@ -103,7 +103,7 @@ public class ExamController {
   public int getIncorrectAnswers() {
     return mExamQuestionsCount - mCorrectAnswers - mSkippedQuestions;
   }
-
+  /*Questions should display in random order, answers should display in as they are in db*/
   private void importRandomQuestions(List<Question> imported_qs) {
     List<Question> availableQuestions = new ArrayList<>(imported_qs);
     int leftToGenerate = mExamQuestionsCount;
