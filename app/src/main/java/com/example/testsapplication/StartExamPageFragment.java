@@ -21,7 +21,6 @@ import com.example.testsapplication.testmanager.TestManager;
  */
 public class StartExamPageFragment extends Fragment {
 
-
   public StartExamPageFragment() {
     // Required empty public constructor
   }

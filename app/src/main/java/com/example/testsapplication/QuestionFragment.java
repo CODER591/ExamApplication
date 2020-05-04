@@ -90,7 +90,6 @@ public class QuestionFragment extends Fragment {
     answer_button.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-
         final int radioButtonID = radioGroup.getCheckedRadioButtonId();
         final View radioButton = radioGroup.findViewById(radioButtonID);
         final int idx = radioGroup.indexOfChild(radioButton); // here we know the index of answer
@@ -129,7 +128,6 @@ public class QuestionFragment extends Fragment {
   }
 
   private void navigateToFragment(Fragment fragment) {
-
     FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.fragment_container, fragment);
     transaction.addToBackStack(null);
@@ -145,7 +143,6 @@ public class QuestionFragment extends Fragment {
   @Override
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-
 
   }
 }
