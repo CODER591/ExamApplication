@@ -10,11 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.testsapplication.R;
 import com.example.testsapplication.ExamActivity;
+import com.example.testsapplication.R;
 import com.example.testsapplication.model.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestViewHolder>{

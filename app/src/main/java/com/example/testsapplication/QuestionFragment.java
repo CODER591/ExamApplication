@@ -5,8 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -66,7 +63,7 @@ public class QuestionFragment extends Fragment {
 
       @Override
       public void onFinish() {
-
+          //move to next question
       }
     };
     QuestionTimer.start();
@@ -133,6 +130,7 @@ public class QuestionFragment extends Fragment {
   }
 
   private void navigateToFragment(Fragment fragment) {
+    assert getFragmentManager() != null;
     FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.fragment_container, fragment);
     transaction.addToBackStack(null);

@@ -1,13 +1,8 @@
 package com.example.testsapplication.model;
 
-import android.os.CountDownTimer;
-import android.widget.Chronometer;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
-
 
 public class ExamController {
   private String mExamName;
@@ -19,9 +14,6 @@ public class ExamController {
   private int mCorrectAnswers;
   private int mSkippedQuestions;
   private List<Integer> mQnA;
-
-  private CountDownTimer mCountDownTimer;
-  private long mTimeLeftInMillis;
 
   public ExamController() {
 
@@ -36,7 +28,7 @@ public class ExamController {
     importRandomQuestions(imported_qs);
     mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
     mPosition = 0;
-    mTimeLeftInMillis = 300000;
+
   }
 
   public int getPosition() {
@@ -72,13 +64,6 @@ public class ExamController {
   public void endExam() {
 
   }
- @Deprecated
-  public String getTimeLeft() {
-    int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-    int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-    return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-  }
-
   /* answer index is  number of checkbox */
   public void answerQuestion(int ans_id) {
     mQnA.set(mPosition, ans_id);
