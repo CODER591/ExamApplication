@@ -17,9 +17,6 @@ public class ExamActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         TestManager.getInstance().createExamFor(bundle.getInt("AdapterPosition"));
-        Chronometer tmp_chronometer =new Chronometer(this);
-
-        TestManager.getInstance().getCurrentExam().setChronometer(tmp_chronometer);
 
         Fragment startTestPageFragment = new StartExamPageFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

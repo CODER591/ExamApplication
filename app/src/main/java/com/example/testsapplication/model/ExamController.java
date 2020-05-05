@@ -1,5 +1,6 @@
 package com.example.testsapplication.model;
 
+import android.os.CountDownTimer;
 import android.widget.Chronometer;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ExamController {
         private int mCorrectAnswers;
         private int mSkippedQuestions;
         private List <Integer> mQnA; //this list contains id of provided answer
-        Chronometer mChronometer;
+        private CountDownTimer mCountDownTimer;
         public ExamController() {
 
         }
@@ -54,12 +55,11 @@ public class ExamController {
         }
 
         public void startExam() {
-                mChronometer.start();
+
                 //set up timer
         }
         public void endExam() {
                 //stop timer
-                mChronometer.stop();
         }
         //answer index is number of answer on plate (number of checkbox)
         public void answerQuestion(int ans_id) {
@@ -80,12 +80,6 @@ public class ExamController {
         }
         public int getIncorrectAnswers() {
                 return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
-        }
-        public Chronometer getChronometer() {
-                return mChronometer;
-        }
-        public void setChronometer(Chronometer chr) {
-                mChronometer =chr;
         }
         private void importRandomQuestions(List<Question>imported_qs) {
                 List<Question> tmp_list= new ArrayList<>(imported_qs);

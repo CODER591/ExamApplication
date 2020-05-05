@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -50,7 +52,6 @@ public class QuestionFragment extends Fragment {
         View returnView = inflater.inflate(R.layout.fragment_question, container, false);
         answer_button = returnView.findViewById(R.id.answer_button);
         skip_button = returnView.findViewById(R.id.skip_button);
-        Chronometer chronometer_view = TestManager.getInstance().getCurrentExam().getChronometer();
 
         TextView tv_question_body = returnView.findViewById(R.id.question_body);
         TextView tv_question_number = returnView.findViewById(R.id.question_number);
