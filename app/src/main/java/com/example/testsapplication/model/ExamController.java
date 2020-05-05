@@ -6,6 +6,7 @@ import android.widget.Chronometer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 
 //should manage the running test directly
@@ -19,8 +20,13 @@ public class ExamController {
         private int mCorrectAnswers;
         private int mSkippedQuestions;
         private List <Integer> mQnA; //this list contains id of provided answer
+
+        private static final long START_TIME_IN_MILLIS = 600000;
         private CountDownTimer mCountDownTimer;
+        private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
         public ExamController() {
+
 
         }
         public ExamController(Test test) {
@@ -32,6 +38,18 @@ public class ExamController {
                 importRandomQuestions(imported_qs);
                 mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
                 mPosition = 0;
+                mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                                mTimeLeftInMillis = millisUntilFinished;
+                        }
+
+                        @Override
+                        public void onFinish() {
+
+                        }
+
+                };
         }
         public int getPosition(){
                 return mPosition;
@@ -55,11 +73,17 @@ public class ExamController {
         }
 
         public void startExam() {
-
-                //set up timer
+                mCountDownTimer.start();
         }
         public void endExam() {
-                //stop timer
+                mCountDownTimer.cancel();
+        }
+        public String  getTimeLeft() {
+                int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+                int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+                String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+                return timeLeftFormatted;
         }
         //answer index is number of answer on plate (number of checkbox)
         public void answerQuestion(int ans_id) {

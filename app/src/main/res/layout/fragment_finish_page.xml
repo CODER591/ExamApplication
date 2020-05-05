@@ -72,7 +72,7 @@
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:textSize="30dp"
-        android:text="Replace me with cronometer"
+        android:text=""
         android:textAlignment="center"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@id/spended_time_text"
