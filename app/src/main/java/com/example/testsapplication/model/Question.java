@@ -9,7 +9,6 @@ public class Question {
     public Question(List<Answer> answers,String body) {
         mAnswers = answers;
         mBody = body;
-
     }
     public String getBody() {
         return mBody;
