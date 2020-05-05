@@ -21,9 +21,8 @@ public class ExamController {
         private int mSkippedQuestions;
         private List <Integer> mQnA; //this list contains id of provided answer
 
-        private static final long START_TIME_IN_MILLIS = 600000;
         private CountDownTimer mCountDownTimer;
-        private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        private long mTimeLeftInMillis;
 
         public ExamController() {
 
@@ -38,17 +37,16 @@ public class ExamController {
                 importRandomQuestions(imported_qs);
                 mQnA = new ArrayList<>(Collections.nCopies(mExamQuestionsCount, 0));
                 mPosition = 0;
+                mTimeLeftInMillis=300000;
                 mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
                                 mTimeLeftInMillis = millisUntilFinished;
                         }
-
                         @Override
                         public void onFinish() {
 
                         }
-
                 };
         }
         public int getPosition(){

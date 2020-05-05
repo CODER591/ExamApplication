@@ -40,7 +40,7 @@ public class FinishPageFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_finish_page, container, false);
         TextView tv_right_ans = view.findViewById(R.id.right_answers);
         Button fin_btn=view.findViewById(R.id.finish_button);
-        TextView spended_time =view.findViewById(R.id.spended_time);
+        TextView spended_time =view.findViewById(R.id.time_left);
         int all_qst_quantity = TestManager.getInstance().getCurrentExam().getExamQuestionsCount();
         int right_ans_quantity = TestManager.getInstance().getCurrentExam().getCorrectAnswers();
         String time_left_formatted = TestManager.getInstance().getCurrentExam().getTimeLeft();

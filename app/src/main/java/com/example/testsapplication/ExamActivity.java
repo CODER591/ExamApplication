@@ -17,7 +17,6 @@ public class ExamActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         TestManager.getInstance().createExamFor(bundle.getInt("AdapterPosition"));
-
         Fragment startTestPageFragment = new StartExamPageFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, startTestPageFragment);
