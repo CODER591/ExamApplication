@@ -79,9 +79,7 @@ public class ExamController {
         public String  getTimeLeft() {
                 int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
                 int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-
-                String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-                return timeLeftFormatted;
+                return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         }
         //answer index is number of answer on plate (number of checkbox)
         public void answerQuestion(int ans_id) {
