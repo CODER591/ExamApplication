@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ public class QuestionFragment extends Fragment {
         View returnView = inflater.inflate(R.layout.fragment_question, container, false);
         answer_button = returnView.findViewById(R.id.answer_button);
         skip_button = returnView.findViewById(R.id.skip_button);
+        Chronometer chronometer_view = TestManager.getInstance().getCurrentExam().getChronometer();
+
         TextView tv_question_body = returnView.findViewById(R.id.question_body);
         TextView tv_question_number = returnView.findViewById(R.id.question_number);
         final RadioGroup radioGroup = (RadioGroup) returnView.findViewById(R.id.answers_radio_group);

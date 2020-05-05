@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.Chronometer;
 
 import com.example.testsapplication.testmanager.TestManager;
 
@@ -16,6 +17,10 @@ public class ExamActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         TestManager.getInstance().createExamFor(bundle.getInt("AdapterPosition"));
+        Chronometer tmp_chronometer =new Chronometer(this);
+
+        TestManager.getInstance().getCurrentExam().setChronometer(tmp_chronometer);
+
         Fragment startTestPageFragment = new StartExamPageFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, startTestPageFragment);

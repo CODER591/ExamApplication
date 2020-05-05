@@ -28,9 +28,8 @@ public class JsonBasedExamDB implements ExamDB {
         return mTests;
     }
 
-
     private Test getTest(JSONObject data) throws JSONException {
-        return new Test(this.getQuestionList(data),data.getString("name"),data.getString("description"));
+        return new Test(this.getQuestionList(data),data.getString("name"),data.getString("description"),Integer.parseInt(data.getString("select_questions")));
     }
 
     private List<Question> getQuestionList(JSONObject data) throws JSONException {

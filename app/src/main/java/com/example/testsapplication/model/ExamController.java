@@ -1,13 +1,10 @@
 package com.example.testsapplication.model;
 
-import com.example.testsapplication.composeexamdb.ExamDB;
+import android.widget.Chronometer;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 //should manage the running test directly
@@ -16,19 +13,19 @@ public class ExamController {
         private String mExamDescription;
         private int mPosition;
         List<Question> mQuizList;  // those questions should be replaced on another entity that would know whether it answered or Not
-        private int mExamQuestionsCount;
+        private Integer mExamQuestionsCount;
 
         private int mCorrectAnswers;
         private int mSkippedQuestions;
         private List <Integer> mQnA; //this list contains id of provided answer
-
+        Chronometer mChronometer;
         public ExamController() {
 
         }
         public ExamController(Test test) {
                 mExamName = test.getTestName();
                 mExamDescription = test.getDescription();
-                mExamQuestionsCount = 2;
+                mExamQuestionsCount = test.getQuestionsInExam();
                 List<Question> imported_qs= test.getQuestions();
                 mQuizList = new ArrayList<>();
                 importRandomQuestions(imported_qs);
@@ -57,10 +54,12 @@ public class ExamController {
         }
 
         public void startExam() {
+                mChronometer.start();
                 //set up timer
         }
         public void endExam() {
                 //stop timer
+                mChronometer.stop();
         }
         //answer index is number of answer on plate (number of checkbox)
         public void answerQuestion(int ans_id) {
@@ -82,15 +81,36 @@ public class ExamController {
         public int getIncorrectAnswers() {
                 return mExamQuestionsCount-mCorrectAnswers-mSkippedQuestions;
         }
+        public Chronometer getChronometer() {
+                return mChronometer;
+        }
+        public void setChronometer(Chronometer chr) {
+                mChronometer =chr;
+        }
         private void importRandomQuestions(List<Question>imported_qs) {
                 List<Question> tmp_list= new ArrayList<>(imported_qs);
                 for(int i = 0; i < mExamQuestionsCount; i++) {
                         //FIX ME !!
                         //HERE IS BUG we can push in list some duplicated questions
-                        int random =(int) (Math.random() * imported_qs.size());
-                        mQuizList.add(tmp_list.get(random));
-                        tmp_list.remove(random);
+                        int random = (int) (Math.random() * imported_qs.size());
+                        mQuizList.add(imported_qs.get(random));
                 }
+                /*
+                for(int i = 0; i < mExamQuestionsCount; i++) {
+                        //FIX ME !! FIXED
+                        //HERE IS BUG we can push in list some duplicated questions
+                        int random =(int) (Math.random() * imported_qs.size());
+                        try {
+                                mQuizList.add(tmp_list.get(random));
+                                tmp_list.remove(random);
+                        }
+                        catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }*/
+                /*FIXED COMMENT:
+                * Because of the repeated random number sometimes this element already deleted in tmp list, so we are getting crash sometimes*/
         }
 }
 
