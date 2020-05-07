@@ -54,19 +54,7 @@ public class QuestionFragment extends Fragment {
     TextView tv_question_body = returnView.findViewById(R.id.question_body);
     TextView tv_question_number = returnView.findViewById(R.id.question_number);
     final RadioGroup radioGroup = (RadioGroup) returnView.findViewById(R.id.answers_radio_group);
-    long millisUntilFinished = 30000;
-    final CountDownTimer QuestionTimer = new CountDownTimer(millisUntilFinished, 1000) {
-      @Override
-      public void onTick(long millisUntilFinished) {
-        updateTimerBox(millisUntilFinished);
-      }
 
-      @Override
-      public void onFinish() {
-          //move to next question
-      }
-    };
-    QuestionTimer.start();
     final Question curr_question = TestManager.getInstance().getCurrentExam().getCurrentQuestion();
     String position = String.valueOf(TestManager.getInstance().getCurrentExam().getPosition() + 1);
     String max_position = String.valueOf(TestManager.getInstance().getCurrentExam().getExamQuestionsCount());
@@ -82,6 +70,27 @@ public class QuestionFragment extends Fragment {
     }
     final int exam_questions_count = TestManager.getInstance().getCurrentExam().getExamQuestionsCount();
     final int current_q_position = TestManager.getInstance().getCurrentExam().getPosition();
+    long millisUntilFinished = 30000;
+    final CountDownTimer QuestionTimer = new CountDownTimer(millisUntilFinished, 1000) {
+      @Override
+      public void onTick(long millisUntilFinished) {
+        updateTimerBox(millisUntilFinished);
+      }
+
+      @Override
+      public void onFinish() {
+        if (exam_questions_count - current_q_position == 1) {
+          TestManager.getInstance().getCurrentExam().endExam();
+          Fragment finalfragment = new FinishPageFragment();
+          navigateToFragment(finalfragment);
+        } else {
+          TestManager.getInstance().getCurrentExam().skipQuestion();
+          Fragment questionFragment = new QuestionFragment();
+          navigateToFragment(questionFragment);
+        }
+      }
+    };
+    QuestionTimer.start();
     answer_button.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
